@@ -1,0 +1,128 @@
+TRY004 Prefer `TypeError` exception for invalid type
+  --> indicadores.py:13:13
+   |
+11 |     for valor in (numerador, denominador):
+12 |         if isinstance(valor, bool):
+13 |             raise ValueError("Los valores deben ser numericos.")
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+14 |
+15 |         if not isinstance(valor, (int, float)):
+   |
+
+TRY004 Prefer `TypeError` exception for invalid type
+  --> indicadores.py:16:13
+   |
+15 |         if not isinstance(valor, (int, float)):
+16 |             raise ValueError("Los valores deben ser numericos.")
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+17 |
+18 |         if not isfinite(valor):
+   |
+
+SIM102 Use a single `if` statement instead of nested `if` statements
+   --> indicadores.py:99:17
+    |
+ 97 |                   denominador = medicion["denominador"]
+ 98 |
+ 99 | /                 if indicador["id"] in (2, 3):
+100 | |                     if numerador > denominador:
+    | |_______________________________________________^
+101 |                           raise ValueError(
+102 |                               "Medicion porcentual inconsistente."
+    |
+help: Combine `if` statements using `and`
+
+ISC004 Unparenthesized implicit string concatenation in collection
+  --> seed.py:28:13
+   |
+26 |               "Interna",
+27 |               "ISO 9001:2015, numeral 9.2",
+28 | /             "Evaluar el cumplimiento del sistema de gestión de calidad "
+29 | |             "e identificar no conformidades.",
+   | |_____________________________________________^
+30 |               "Realizada según el caso",
+31 |           ),
+   |
+help: Did you forget a comma?
+help: Wrap implicitly concatenated strings in parentheses
+   |
+27 |             "ISO 9001:2015, numeral 9.2",
+   -             "Evaluar el cumplimiento del sistema de gestión de calidad "
+   -             "e identificar no conformidades.",
+28 +             ("Evaluar el cumplimiento del sistema de gestión de calidad "
+29 +             "e identificar no conformidades."),
+30 |             "Realizada según el caso",
+   |
+note: This is an unsafe fix and may change runtime behavior
+
+ISC004 Unparenthesized implicit string concatenation in collection
+  --> seed.py:36:13
+   |
+34 |               "Externa",
+35 |               "ISO 19011:2018, directrices de auditoría",
+36 | /             "Proponer una evaluación independiente por parte "
+37 | |             "del cliente u otra organización externa.",
+   | |______________________________________________________^
+38 |               "Propuesta",
+39 |           ),
+   |
+help: Did you forget a comma?
+help: Wrap implicitly concatenated strings in parentheses
+   |
+35 |             "ISO 19011:2018, directrices de auditoría",
+   -             "Proponer una evaluación independiente por parte "
+   -             "del cliente u otra organización externa.",
+36 +             ("Proponer una evaluación independiente por parte "
+37 +             "del cliente u otra organización externa."),
+38 |             "Propuesta",
+   |
+note: This is an unsafe fix and may change runtime behavior
+
+ISC004 Unparenthesized implicit string concatenation in collection
+  --> seed.py:44:13
+   |
+42 |               "Certificación",
+43 |               "ISO 9001:2015 e ISO/IEC 17021-1:2015",
+44 | /             "Evaluar la conformidad del sistema mediante "
+45 | |             "un organismo certificador competente.",
+   | |___________________________________________________^
+46 |               "Propuesta futura",
+47 |           ),
+   |
+help: Did you forget a comma?
+help: Wrap implicitly concatenated strings in parentheses
+   |
+43 |             "ISO 9001:2015 e ISO/IEC 17021-1:2015",
+   -             "Evaluar la conformidad del sistema mediante "
+   -             "un organismo certificador competente.",
+44 +             ("Evaluar la conformidad del sistema mediante "
+45 +             "un organismo certificador competente."),
+46 |             "Propuesta futura",
+   |
+note: This is an unsafe fix and may change runtime behavior
+
+ISC004 Unparenthesized implicit string concatenation in collection
+  --> seed.py:52:13
+   |
+50 |               "Seguimiento",
+51 |               "ISO 9001:2015, numerales 9.2 y 10.2",
+52 | /             "Verificar la implementación y eficacia de las "
+53 | |             "acciones correctivas.",
+   | |___________________________________^
+54 |               "Planificada",
+55 |           ),
+   |
+help: Did you forget a comma?
+help: Wrap implicitly concatenated strings in parentheses
+   |
+51 |             "ISO 9001:2015, numerales 9.2 y 10.2",
+   -             "Verificar la implementación y eficacia de las "
+   -             "acciones correctivas.",
+52 +             ("Verificar la implementación y eficacia de las "
+53 +             "acciones correctivas."),
+54 |             "Planificada",
+   |
+note: This is an unsafe fix and may change runtime behavior
+
+Found 7 errors.
+4 unsafe fixes available with `--fix --unsafe-fixes`.

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="31" time="26.162" timestamp="2026-11-23T01:22:47.020837-05:00" hostname="LAPTOP-P05N63P7"><testcase classname="tests.test_web" name="test_acceso_sistema" time="4.403" /><testcase classname="tests.test_web" name="test_aviso_simulacion_academica" time="0.598" /><testcase classname="tests.test_web" name="test_ausencia_errores_interfaz" time="0.689" /><testcase classname="tests.test_web" name="test_panel_ejecutivo[total-auditorias-4]" time="0.589" /><testcase classname="tests.test_web" name="test_panel_ejecutivo[total-no-conformidades-5]" time="0.597" /><testcase classname="tests.test_web" name="test_panel_ejecutivo[total-fuera-meta-3]" time="0.592" /><testcase classname="tests.test_web" name="test_panel_ejecutivo[total-acciones-20]" time="0.575" /><testcase classname="tests.test_web" name="test_panel_ejecutivo[total-responsables-5]" time="0.595" /><testcase classname="tests.test_web" name="test_navegacion_secciones[inicio]" time="0.633" /><testcase classname="tests.test_web" name="test_navegacion_secciones[auditorias]" time="0.629" /><testcase classname="tests.test_web" name="test_navegacion_secciones[no-conformidades]" time="0.637" /><testcase classname="tests.test_web" name="test_navegacion_secciones[indicadores]" time="0.619" /><testcase classname="tests.test_web" name="test_navegacion_secciones[pdca]" time="0.632" /><testcase classname="tests.test_web" name="test_navegacion_secciones[responsables]" time="0.624" /><testcase classname="tests.test_web" name="test_navegacion_secciones[informe]" time="0.635" /><testcase classname="tests.test_web" name="test_tabla_auditorias" time="0.604" /><testcase classname="tests.test_web" name="test_tabla_no_conformidades" time="0.650" /><testcase classname="tests.test_web" name="test_tarjetas_indicadores" time="0.698" /><testcase classname="tests.test_web" name="test_resultados_actuales_indicadores" time="0.586" /><testcase classname="tests.test_web" name="test_graficas_indicadores" time="0.645" /><testcase classname="tests.test_web" name="test_historial_mediciones" time="0.647" /><testcase classname="tests.test_web" name="test_plan_phva_completo" time="0.122" /><testcase classname="tests.test_web" name="test_filtro_por_fase[Planificar]" time="0.661" /><testcase classname="tests.test_web" name="test_filtro_por_fase[Hacer]" time="0.721" /><testcase classname="tests.test_web" name="test_filtro_por_fase[Verificar]" time="0.660" /><testcase classname="tests.test_web" name="test_filtro_por_fase[Actuar]" time="0.659" /><testcase classname="tests.test_web" name="test_filtro_por_hallazgo" time="0.640" /><testcase classname="tests.test_web" name="test_filtros_combinados_phva" time="0.669" /><testcase classname="tests.test_web" name="test_limpiar_filtros" time="1.653"><failure message="selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (796, 3460)&#10;  (Session info: chrome=158.0.8127.36); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterceptedexception&#10;Stacktrace:&#10;Symbols not available. Dumping unresolved backtrace:&#10;&#09;(No symbol) [0x7ff745260f25]&#10;&#09;(No symbol) [0x7ff745161dd0]&#10;&#09;(No symbol) [0x7ff744fe3433]&#10;[+21 more lines; full report in element text]">pagina = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="0d19088a3be99a8f2b90b519b2445888")&gt;
+
+    def test_limpiar_filtros(pagina):
+        Select(
+            pagina.find_element(
+                By.ID, "filtro-fase"
+            )
+        ).select_by_value("Verificar")
+    
+        Select(
+            pagina.find_element(
+                By.ID, "filtro-nc"
+            )
+        ).select_by_value("NC-04")
+    
+        pagina.find_element(
+            By.ID, "limpiar-filtros"
+&gt;       ).click()
+
+tests\test_web.py:359: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\lib\site-packages\selenium\webdriver\remote\webelement.py:117: in click
+    self._execute(Command.CLICK_ELEMENT)
+.venv\lib\site-packages\selenium\webdriver\remote\webelement.py:532: in _execute
+    return self._parent.execute(command, params)
+.venv\lib\site-packages\selenium\webdriver\remote\webdriver.py:569: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000002154A724D60&gt;
+response = {'status': 400, 'value': '{"value":{"error":"element click intercepted","message":"element click intercepted: Element ...4516c4b4]\\n\\t(No symbol) [0x7ff7451550bc]\\n\\t(No symbol) [0x7fffb433cd87]\\n\\t(No symbol) [0x7fffb644caec]\\n"}}'}
+
+    def check_response(self, response: dict[str, Any]) -&gt; None:
+        """Check that a JSON response from the WebDriver does not have an error.
+    
+        Args:
+            response: The JSON response from the WebDriver server as a dictionary
+                object.
+    
+        Raises:
+            WebDriverException: If the response contains an error message.
+        """
+        status = response.get("status", None)
+        if not status or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get("message", "")
+        screen: str = response.get("screen", "")
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get("value", None)
+            if value_json and isinstance(value_json, str):
+                try:
+                    value = json.loads(value_json)
+                    if isinstance(value, dict):
+                        if len(value) == 1:
+                            value = value["value"]
+                        status = value.get("error", None)
+                        if not status:
+                            status = value.get("status", ErrorCode.UNKNOWN_ERROR)
+                            message = value.get("value") or value.get("message")
+                            if not isinstance(message, str):
+                                value = message
+                                message = message.get("message") if isinstance(message, dict) else None
+                        else:
+                            message = value.get("message", None)
+                except ValueError:
+                    pass
+    
+        exception_class: type[WebDriverException]
+        e = ErrorCode()
+        error_codes = [item for item in dir(e) if not item.startswith("__")]
+        for error_code in error_codes:
+            error_info = getattr(ErrorCode, error_code)
+            if isinstance(error_info, list) and status in error_info:
+                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)
+                break
+        else:
+            exception_class = WebDriverException
+    
+        if not value:
+            value = response.get("value")
+        if isinstance(value, str):
+            raise exception_class(value)
+        if isinstance(value, dict):
+            if message == "" and "message" in value:
+                message = value["message"]
+    
+            screen = None  # type: ignore[assignment]
+            if "screen" in value:
+                screen = value["screen"]
+    
+            stacktrace = None
+            st_value = value.get("stackTrace") or value.get("stacktrace")
+            if st_value:
+                if isinstance(st_value, str):
+                    stacktrace = st_value.split("\n")
+                else:
+                    stacktrace = []
+                    try:
+                        for frame in st_value:
+                            line = frame.get("lineNumber", "")
+                            file = frame.get("fileName", "&lt;anonymous&gt;")
+                            if line:
+                                file = f"{file}:{line}"
+                            meth = frame.get("methodName", "&lt;anonymous&gt;")
+                            if "className" in frame:
+                                meth = f"{frame['className']}.{meth}"
+                            msg = "    at %s (%s)"
+                            msg = msg % (meth, file)
+                            stacktrace.append(msg)
+                    except TypeError:
+                        pass
+        if exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if isinstance(value, dict):
+                if "data" in value:
+                    alert_text = value["data"].get("text")
+                elif "alert" in value:
+                    alert_text = value["alert"].get("text")
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (796, 3460)
+E         (Session info: chrome=158.0.8127.36); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterceptedexception
+E       Stacktrace:
+E       Symbols not available. Dumping unresolved backtrace:
+E       	(No symbol) [0x7ff745260f25]
+E       	(No symbol) [0x7ff745161dd0]
+E       	(No symbol) [0x7ff744fe3433]
+E       	(No symbol) [0x7ff74582bf22]
+E       	(No symbol) [0x7ff74582a53a]
+E       	(No symbol) [0x7ff74582842f]
+E       	(No symbol) [0x7ff745827bc0]
+E       	(No symbol) [0x7ff74581c842]
+E       	(No symbol) [0x7ff74583902a]
+E       	(No symbol) [0x7ff74581c289]
+E       	(No symbol) [0x7ff74581c220]
+E       	(No symbol) [0x7ff745015b01]
+E       	(No symbol) [0x7ff744ffbea1]
+E       	(No symbol) [0x7ff744ffd1d3]
+E       	(No symbol) [0x7ff745700f4f]
+E       	(No symbol) [0x7ff745727678]
+E       	(No symbol) [0x7ff74571af68]
+E       	(No symbol) [0x7ff74537e64e]
+E       	(No symbol) [0x7ff745171713]
+E       	(No symbol) [0x7ff74516c324]
+E       	(No symbol) [0x7ff74516c4b4]
+E       	(No symbol) [0x7ff7451550bc]
+E       	(No symbol) [0x7fffb433cd87]
+E       	(No symbol) [0x7fffb644caec]
+
+.venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py:234: ElementClickInterceptedException</failure></testcase><testcase classname="tests.test_web" name="test_tabla_responsables" time="0.226" /><testcase classname="tests.test_web" name="test_informe_ejecutivo" time="2.776" /></testsuite></testsuites>

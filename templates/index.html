@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SoftNova | Sistema de Gestión de Calidad</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <script defer
+            src="{{ url_for('static', filename='js/dashboard.js') }}">
+    </script>
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <div class="marca">
+            <div class="logo">SN</div>
+            <div>
+                <h1>SOFTNOVA S.A.S.</h1>
+                <p>Sistema de Gestión de Auditorías e Indicadores de Calidad</p>
+            </div>
+        </div>
+
+        <div class="normativa">
+            ISO 9001:2015
+            <br>
+            Mejora continua
+        </div>
+    </header>
+
+    <nav class="navegacion" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#auditorias">Auditorías</a>
+        <a href="#no-conformidades">No conformidades</a>
+        <a href="#indicadores">Indicadores</a>
+        <a href="#pdca">Plan PHVA</a>
+        <a href="#responsables">Responsables</a>
+        <a href="#informe">Informe ejecutivo</a>
+    </nav>
+
+    <main class="contenedor">
+
+        <div class="aviso">
+            <strong>Simulación académica:</strong>
+            prototipo desarrollado a partir del estudio de caso
+            SoftNova S.A.S. Las mediciones empresariales son
+            simuladas y las acciones de mejora son propuestas.
+            Este sistema no acredita una certificación ISO.
+        </div>
+
+        <div id="estado-sistema" class="estado-sistema" role="status">
+            Verificando disponibilidad del sistema...
+        </div>
+
+        <div id="mensaje-error" class="error" role="alert" hidden></div>
+
+        <!-- MÓDULO 1: PANEL EJECUTIVO -->
+
+        <section id="inicio" class="seccion">
+
+            <h2>01. Panel ejecutivo de calidad</h2>
+
+            <p class="descripcion">
+                Diagnóstico y seguimiento del sistema de gestión
+                de calidad de SoftNova S.A.S.
+            </p>
+
+            <div class="tarjetas-resumen">
+
+                <article class="tarjeta azul">
+                    <span>Tipos de auditoría</span>
+                    <strong id="total-auditorias">--</strong>
+                    <p>Clasificación y fundamentación</p>
+                </article>
+
+                <article class="tarjeta naranja">
+                    <span>No conformidades abiertas</span>
+                    <strong id="total-no-conformidades">--</strong>
+                    <p>Hallazgos del caso empresarial</p>
+                </article>
+
+                <article class="tarjeta roja">
+                    <span>Indicadores fuera de meta</span>
+                    <strong id="total-fuera-meta">--</strong>
+                    <p>Desviaciones de calidad</p>
+                </article>
+
+                <article class="tarjeta verde">
+                    <span>Acciones PHVA propuestas</span>
+                    <strong id="total-acciones">--</strong>
+                    <p>Plan de mejoramiento continuo</p>
+                </article>
+
+                <article class="tarjeta morada">
+                    <span>Roles responsables</span>
+                    <strong id="total-responsables">--</strong>
+                    <p>Responsabilidades propuestas</p>
+                </article>
+
+            </div>
+
+            <article class="panel diagnostico">
+                <h3>Contexto empresarial</h3>
+
+                <p>
+                    SoftNova S.A.S. ha sido contratada para implementar
+                    un sistema de gestión de calidad basado en ISO
+                    9001:2015. Durante una auditoría interna se
+                    identificaron deficiencias en la asignación de
+                    responsabilidades, el seguimiento de indicadores
+                    y la trazabilidad de las no conformidades.
+                </p>
+
+                <p>
+                    La duplicación de la tasa de defectos durante
+                    los últimos tres sprints y la ausencia de registros
+                    de acciones correctivas justifican una intervención
+                    estructurada mediante el ciclo PHVA.
+                </p>
+            </article>
+
+        </section>
+
+        <!-- MÓDULO 2: AUDITORÍAS -->
+
+        <section id="auditorias" class="seccion">
+
+            <h2>02. Clasificación de auditorías</h2>
+
+            <p class="descripcion">
+                Identificación, justificación normativa y aplicabilidad
+                de las auditorías al caso empresarial.
+            </p>
+
+            <div class="tabla-contenedor">
+                <table id="tabla-auditorias">
+                    <thead>
+                        <tr>
+                            <th>Tipo de auditoría</th>
+                            <th>Fundamento normativo</th>
+                            <th>Objetivo y aplicación</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-auditorias"></tbody>
+                </table>
+            </div>
+
+            <p class="nota">
+                La auditoría interna corresponde al hecho descrito
+                en el caso. Las auditorías externa, de certificación
+                y de seguimiento se plantean como actuaciones
+                propuestas o futuras.
+            </p>
+
+        </section>
+
+        <!-- MÓDULO 3: NO CONFORMIDADES -->
+
+        <section id="no-conformidades" class="seccion">
+
+            <h2>03. Registro de no conformidades y hallazgos</h2>
+
+            <p class="descripcion">
+                Trazabilidad de los problemas identificados,
+                posibles causas, referencia normativa y responsables.
+            </p>
+
+            <div class="tabla-contenedor">
+                <table id="tabla-no-conformidades">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Hallazgo</th>
+                            <th>Numeral ISO 9001</th>
+                            <th>Causa probable</th>
+                            <th>Responsable propuesto</th>
+                            <th>Prioridad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cuerpo-no-conformidades"></tbody>
+                </table>
+            </div>
+
+            <p class="nota">
+                Las causas y prioridades son hipótesis de análisis
+                que deberán verificarse mediante evidencias.
+            </p>
+
+        </section>
+
+        <!-- MÓDULO 4: INDICADORES -->
+
+        <section id="indicadores" class="seccion">
+
+            <h2>04. Indicadores clave de calidad del producto</h2>
+
+            <p class="descripcion">
+                Seguimiento de los tres indicadores mediante
+                fórmulas, metas, responsables y gráficas por sprint.
+            </p>
+
+            <div id="contenedor-indicadores"
+                 class="indicadores-grid">
+            </div>
+
+            <p class="nota">
+                Los valores empresariales son simulados.
+                Las metas constituyen propuestas académicas
+                y no umbrales obligatorios de ISO 9001:2015.
+            </p>
+
+        </section>
+
+        <!-- MÓDULO 5: CICLO PHVA -->
+
+        <section id="pdca" class="seccion">
+
+            <h2>05. Plan de mejora continua — Ciclo PHVA</h2>
+
+            <p class="descripcion">
+                Propuesta de acciones correctivas, seguimiento
+                de su eficacia y prevención de reincidencias.
+            </p>
+
+            <div class="ciclo-phva">
+
+                <article class="fase planificar">
+                    <strong>P</strong>
+                    <h3>Planificar</h3>
+                    <p>Identificar causas y definir objetivos.</p>
+                </article>
+
+                <article class="fase hacer">
+                    <strong>H</strong>
+                    <h3>Hacer</h3>
+                    <p>Implementar las acciones propuestas.</p>
+                </article>
+
+                <article class="fase verificar">
+                    <strong>V</strong>
+                    <h3>Verificar</h3>
+                    <p>Medir resultados y comprobar eficacia.</p>
+                </article>
+
+                <article class="fase actuar">
+                    <strong>A</strong>
+                    <h3>Actuar</h3>
+                    <p>Estandarizar y prevenir reincidencias.</p>
+                </article>
+
+            </div>
+
+            <div class="filtros">
+
+                <label for="filtro-fase">
+                    Filtrar por fase:
+                </label>
+
+                <select id="filtro-fase">
+                    <option value="Todas">Todas las fases</option>
+                    <option value="Planificar">Planificar</option>
+                    <option value="Hacer">Hacer</option>
+                    <option value="Verificar">Verificar</option>
+                    <option value="Actuar">Actuar</option>
+                </select>
+
+                <label for="filtro-nc">
+                    Filtrar por hallazgo:
+                </label>
+
+                <select id="filtro-nc">
+                    <option value="Todas">Todos los hallazgos</option>
+                    <option value="NC-01">NC-01</option>
+                    <option value="NC-02">NC-02</option>
+                    <option value="NC-03">NC-03</option>
+                    <option value="NC-04">NC-04</option>
+                    <option value="NC-05">NC-05</option>
+                </select>
+
+                <button id="limpiar-filtros" type="button">
+                    Limpiar filtros
+                </button>
+
+            </div>
+
+            <p id="contador-acciones" role="status"></p>
+
+            <div class="tabla-contenedor">
+                <table id="tabla-pdca">
+                    <thead>
+                        <tr>
+                            <th>Hallazgo</th>
+                            <th>Fase</th>
+                            <th>Acción propuesta</th>
+                            <th>Responsable</th>
+                            <th>Plazo</th>
+                            <th>Criterio de eficacia</th>
+                            <th>Evidencia</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cuerpo-pdca"></tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- MÓDULO 6: RESPONSABILIDADES -->
+
+        <section id="responsables" class="seccion">
+
+            <h2>06. Roles y responsabilidades</h2>
+
+            <p class="descripcion">
+                Asignación propuesta de responsabilidades
+                conforme al numeral 5.3 de ISO 9001:2015.
+            </p>
+
+            <div class="tabla-contenedor">
+                <table id="tabla-responsables">
+                    <thead>
+                        <tr>
+                            <th>Identificación</th>
+                            <th>Rol</th>
+                            <th>Responsabilidad</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cuerpo-responsables"></tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- MÓDULO 7: INFORME EJECUTIVO -->
+
+        <section id="informe" class="seccion">
+
+            <h2>07. Informe ejecutivo de calidad</h2>
+
+            <article class="panel">
+
+                <h3>Diagnóstico consolidado</h3>
+
+                <p id="diagnostico-ejecutivo" role="status">
+                    Cargando resultados del diagnóstico...
+                </p>
+
+                <h3>Métodos de validación propuestos y aplicables</h3>
+
+                <div class="metodos-grid">
+
+                    <article class="metodo">
+                        <h4>Validación de API REST</h4>
+                        <p>
+                            Comprobar respuestas, estructuras de datos,
+                            códigos HTTP y consistencia de los registros
+                            mediante Pytest y Requests.
+                        </p>
+                    </article>
+
+                    <article class="metodo">
+                        <h4>Validación funcional web</h4>
+                        <p>
+                            Verificar la navegación, presentación de
+                            indicadores y filtros del plan PHVA
+                            mediante Selenium.
+                        </p>
+                    </article>
+
+                    <article class="metodo">
+                        <h4>Revisión documental y de datos</h4>
+                        <p>
+                            Contrastar fórmulas, responsables,
+                            referencias normativas y trazabilidad
+                            entre hallazgos y acciones propuestas.
+                        </p>
+                    </article>
+
+                    <article class="metodo">
+                        <h4>Validación técnica complementaria</h4>
+                        <p>
+                            Evaluar el código fuente mediante Ruff
+                            y medir la cobertura de las pruebas
+                            con Coverage.py.
+                        </p>
+                    </article>
+
+                </div>
+
+                <h3>Conclusiones preliminares</h3>
+
+                <p>
+                    El caso empresarial evidencia la necesidad de
+                    fortalecer la gobernanza de calidad, el control
+                    de indicadores y la documentación de las
+                    acciones correctivas. El prototipo facilita
+                    la consulta centralizada y trazable de estos
+                    elementos.
+                </p>
+
+                <h3>Recomendaciones</h3>
+
+                <ol>
+                    <li>
+                        Formalizar los roles y responsabilidades
+                        del sistema de gestión de calidad.
+                    </li>
+
+                    <li>
+                        Revisar los indicadores en cada sprint
+                        y analizar sus desviaciones.
+                    </li>
+
+                    <li>
+                        Fortalecer las pruebas automatizadas
+                        y los controles de regresión.
+                    </li>
+
+                    <li>
+                        Documentar las evidencias de las acciones
+                        correctivas y verificar su eficacia antes
+                        de cerrar los hallazgos.
+                    </li>
+
+                    <li>
+                        Realizar auditorías de seguimiento y
+                        retrospectivas periódicas para prevenir
+                        la recurrencia de los problemas.
+                    </li>
+                </ol>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer class="pie-pagina">
+        <strong>SOFTNOVA S.A.S. — Prototipo académico</strong>
+
+        <p>Pruebas y Calidad de Software | Unidad 3 | AA1</p>
+
+        <p>Estudio de caso: Auditoría de calidad y uso de indicadores</p>
+
+        <p>Ingeniería de Software — Tecnológica del Oriente</p>
+
+        <p>2026</p>
+    </footer>
+
+</body>
+</html>
